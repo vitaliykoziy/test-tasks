@@ -12,11 +12,11 @@ header{
 }
 
 
-.content, section .row, section .row .item{
+.content,section, section .item{
     display: flex;
 }
 
-.content, section .row .item{
+.content, section .item{
     justify-content:center;
 }
 
@@ -29,29 +29,82 @@ header{
     background: #999;
 }
 
-section .row{
-    justify-content:space-around; 
+section {
+    flex-wrap:wrap;
+    justify-content: space-around;
 }
 
-.content .row .item{
+.content .item{
     align-items:center;
     width: 200px;
     height: 200px;
     border: 1px solid black;
 }
 
-/*set bg colors for more visualization*/
-.content .row .item:nth-child(1){
-    background: bisque;
-}
-.content .row .item:nth-child(2){
-    background: green;
+.bg-1{
+    background-color: aliceblue;
 }
 
-.content .row .item:nth-child(3){
-    background: yellow;
+.bg-2{
+    background-color: aqua;
 }
 
-.content .row .item:nth-child(4){
-    background: yellowgreen;
+.bg-3{
+    background-color: bisque;
+}
+
+.bg-4{
+    background-color: blueviolet;
+}
+
+.bg-5{
+    background-color: burlywood;
+}
+
+.bg-6{
+    background-color: cadetblue;
+}
+
+.bg-7{
+    background-color: chartreuse;
+}
+
+.bg-8{
+    background-color: darkgoldenrod;
+}
+
+.bg-9{
+    background-color: darkslateblue;
+}
+
+.bg-9{
+    background-color: gold;
+}
+
+.bg-10{
+    background-color: hotpink;
+}
+
+.bg-11{
+    background-color: turquoise;
+}
+
+.bg-12{
+    background-color: skyblue;
+}
+
+.bg-13{
+    background-color: royalblue;
+}
+
+.bg-14{
+    background-color: salmon;
+}
+
+.bg-15{
+    background-color: teal;
+}
+
+.bg-16{
+    background-color: tomato;
 }
