@@ -9,18 +9,18 @@ function init() {
 }
 
 function setRandomOrderAndBgColorForItems() {
-    var items = document.getElementsByClassName("item");
-    var orders = getOrders(items.length);
-    var bg_colors = getBgColors(items.length);
-    var random_order, random_bg_color, index_for_removing;
+    var items, orders, bg_colors, random_order, random_bg_color, index_for_removing, i;
+    items = document.getElementsByClassName("item");
+    orders = getOrders(items.length);
+    bg_colors = getBgColors(items.length);
 
-    for (var i = 0; i < items.length; i++) {
+    for (i = 0; i < items.length; i++) {
         //random orders
         random_order = orders.random();
         index_for_removing = orders.indexOf(random_order);
         orders.splice(index_for_removing, 1);
 
-        //rendom bg colors
+        //random bg colors
         random_bg_color = bg_colors.random();
         index_for_removing = bg_colors.indexOf(random_bg_color);
         bg_colors.splice(index_for_removing, 1);
@@ -29,35 +29,36 @@ function setRandomOrderAndBgColorForItems() {
         items[i].style.order = random_order;
         items[i].style.backgroundColor = random_bg_color;
     }
-    return true;
-
 }
 
 
 function getOrders(orders_count) {
-    var orders = new Array();
-    for (var i = 0; i < orders_count; i++) {
+    var orders, i;
+    orders = [];
+    for (i = 0; i < orders_count; i++) {
         orders[i] = i + 1;
     }
     return orders;
 }
 
 function getBgColors(colors_count) {
-    var bg_colors = new Array();
-    for (var i = 0; i < colors_count; i++) {
+    var bg_colors, i;
+    bg_colors = [];
+    for (i = 0; i < colors_count; i++) {
         bg_colors[i] = generateRandomColor(bg_colors);
     }
     return bg_colors;
 }
 
 function generateRandomColor(usedColors) {
-    if (usedColors === undefined) {
-        usedColors = new Array();
+    var color_hash, possible, i;
+    if (!usedColors) {
+        usedColors = [];
     }
-    var color_hash = "";
-    var possible = "0123456789ABCDEF";
+    color_hash = "";
+    possible = "0123456789ABCDEF";
 
-    for (var i = 0; i < 6; i++) {
+    for (i = 0; i < 6; i++) {
         color_hash += possible.charAt(Math.floor(Math.random() * possible.length));
     }
 
