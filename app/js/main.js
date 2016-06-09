@@ -1,73 +1,116 @@
-Array.prototype.random = function () {
-    return this[Math.floor((Math.random() * this.length))];
+/* eslint linebreak-style: ["error", "windows"] */
+/* eslint no-implicit-globals: 0 */
+/* eslint no-plusplus: 0 */
+/* eslint id-length: 0 */
+/* eslint one-var: 0 */
+/* eslint no-magic-numbers: 0 */
+/* eslint vars-on-top: 0 */
+/* eslint max-statements: 0 */
+/* eslint object-shorthand: ["error", "always", { "avoidQuotes": true }] */
+var arrObject = Array;
+
+arrObject.prototype.random = function random () {
+
+    "use strict";
+
+    return this[Math.floor(Math.random() * this.length)];
+
 };
 
+window.setStyles = function setStyles () {
 
-var setStyles = (function () {
-    var getOrders = function (orders_count) {
-        var orders, i;
-        orders = [];
-        for (i = 0; i < orders_count; i++) {
+    "use strict";
+
+    var getOrders = function getOrders (ordersCount) {
+
+        var orders = [];
+
+        for (var i = 0; i < ordersCount; i++) {
+
             orders[i] = i + 1;
+
         }
+
         return orders;
+
     };
 
-    var getBgColors = function (colors_count) {
-        var bg_colors, i;
-        bg_colors = [];
-        for (i = 0; i < colors_count; i++) {
-            bg_colors[i] = generateRandomColor(bg_colors);
-        }
-        return bg_colors;
-    };
+    var generateRandomColor = function generateRandomColor (usedColors) {
 
-    var generateRandomColor = function (usedColors) {
-        if (!usedColors) {
-            usedColors = [];
+        var usedColorsPrivate = usedColors;
+
+        if (!usedColorsPrivate) {
+
+            usedColorsPrivate = [];
+
         }
-        var color_hash = "";
+
+        var colorHash = "#";
         var possible = "0123456789ABCDEF";
 
         for (var i = 0; i < 6; i++) {
-            color_hash += possible.charAt(Math.floor(Math.random() * possible.length));
+
+            colorHash += possible.charAt(
+                    Math.floor(Math.random() * possible.length)
+                    );
+
         }
 
         /* eliminate duplicates */
-        if (usedColors.indexOf('#' + color_hash) !== -1) {
-            color_hash = generateRandomColor(usedColors);
+        if (usedColorsPrivate.indexOf(colorHash) !== -1) {
+
+            colorHash = generateRandomColor(usedColorsPrivate);
+
         }
-        return '#' + color_hash;
+
+        return colorHash;
+
     };
 
+    var getBgColors = function getBgColors (colorsCount) {
 
+        var bgColors = [];
 
+        for (var i = 0; i < colorsCount; i++) {
 
-    var runInit = function () {
-        var bg_colors, random_order, random_bg_color, index_for_removing;
+            bgColors[i] = generateRandomColor(bgColors);
+
+        }
+
+        return bgColors;
+
+    };
+
+    var init = function init () {
+
         var items = document.getElementsByClassName("item");
         var orders = getOrders(items.length);
-        var bg_colors = getBgColors(items.length);
+        var bgColors = getBgColors(items.length);
 
         for (var i = 0; i < items.length; i++) {
-            //random orders
-            random_order = orders.random();
-            index_for_removing = orders.indexOf(random_order);
-            orders.splice(index_for_removing, 1);
 
-            //random bg colors
-            random_bg_color = bg_colors.random();
-            index_for_removing = bg_colors.indexOf(random_bg_color);
-            bg_colors.splice(index_for_removing, 1);
+            // random orders
+            var randomOrder = orders.random();
+            var indexForRemoving = orders.indexOf(randomOrder);
 
-            //change styles of item
-            items[i].style.order = random_order;
-            items[i].style.backgroundColor = random_bg_color;
+            orders.splice(indexForRemoving, 1);
+
+            // random bg colors
+            var randomBgColor = bgColors.random();
+
+            indexForRemoving = bgColors.indexOf(randomBgColor);
+            bgColors.splice(indexForRemoving, 1);
+
+            // change styles of item
+            items[i].style.order = randomOrder;
+            items[i].style.backgroundColor = randomBgColor;
+
         }
+
     };
 
     return {
-        init: runInit
+        "init": init
     };
 
-})();
+};
