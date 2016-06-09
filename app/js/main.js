@@ -5,7 +5,7 @@ Array.prototype.random = function () {
 window.onload = init();
 
 function init() {
-    setRandomOrderAndBgColorForItems();
+//    setRandomOrderAndBgColorForItems();
 }
 
 function setRandomOrderAndBgColorForItems() {
