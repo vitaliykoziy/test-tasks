@@ -1,6 +1,7 @@
 body{
     position:relative;
     margin: 0;
+    min-width: 1000px;
 }
 header{
     min-height: 100px;
