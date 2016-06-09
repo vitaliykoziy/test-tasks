@@ -17,7 +17,7 @@ arrObject.prototype.random = function random () {
 
 };
 
-window.setStyles = function setStyles () {
+window.setStyles = (function setStyles () {
 
     "use strict";
 
@@ -113,4 +113,4 @@ window.setStyles = function setStyles () {
         "init": init
     };
 
-};
+}());
