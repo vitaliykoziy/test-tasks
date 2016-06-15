@@ -9,7 +9,7 @@
 /* eslint object-shorthand: ["error", "always", { "avoidQuotes": true }] */
 var arrObject = Array;
 
-arrObject.prototype.random = function random () {
+arrObject.prototype.random = function random() {
 
     "use strict";
 
@@ -17,11 +17,11 @@ arrObject.prototype.random = function random () {
 
 };
 
-window.setStyles = (function setStyles () {
+window.setStyles = (function setStyles() {
 
     "use strict";
 
-    var getOrders = function getOrders (ordersCount) {
+    var getOrders = function getOrders(ordersCount) {
 
         var orders = [];
 
@@ -35,7 +35,7 @@ window.setStyles = (function setStyles () {
 
     };
 
-    var generateRandomColor = function generateRandomColor (usedColors) {
+    var generateRandomColor = function generateRandomColor(usedColors) {
 
         var usedColorsPrivate = usedColors;
 
@@ -67,7 +67,7 @@ window.setStyles = (function setStyles () {
 
     };
 
-    var getBgColors = function getBgColors (colorsCount) {
+    var getBgColors = function getBgColors(colorsCount) {
 
         var bgColors = [];
 
@@ -81,7 +81,7 @@ window.setStyles = (function setStyles () {
 
     };
 
-    var init = function init () {
+    var init = function init() {
 
         var items = document.getElementsByClassName("item");
         var orders = getOrders(items.length);
