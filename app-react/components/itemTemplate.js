@@ -1,4 +1,4 @@
-define([], function () {
+define(['./itemTemplate'], function () {
     return React.createClass({
         render(){
             return (

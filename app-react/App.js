@@ -1,4 +1,7 @@
-require(['items'], function (Items) {
+require(['./components/items'], function (Items) {
+	console.log(Items);
+	
+	
     var App = React.createClass({
         render(){
             return (
