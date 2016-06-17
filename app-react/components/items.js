@@ -1,22 +1,22 @@
-define(['./items'], function () {
-	var a = require(['./itemTemplate'], function (itemTemplate) {
-			return React.createClass({
-				render: function () {
-					return (
-						<section className="content-width">
-							{
-								[1, 2, 3, 4].map(function (i) {
-									return [1, 2, 3, 4].map(function (j) {
-										return <ItemTemplate bgClass={(i-1)*4+j} iItem={i} jItem={j}/>;
-									})
-								})
-							}
-						</section>
-					);
-				}
-			});
-	});	
-	return a;
+import React from "react";
+import ItemTemplate from "./itemTemplate";
+export default React.createClass({
+    getDefaultProps: function() {
+        return {
+            lineStyle: ''
+        };
+    },
+    render: function () {
+        return (
+            <section className="content-width">
+                {
+                    [1, 2, 3, 4].map(function (row, parentIndex) {
+                        return [1, 2, 3, 4].map(function (column, childrenIndex) {
+                            return <ItemTemplate bgClass={(row-1)*4+column} column={column} row={row} key={(parentIndex-1)*4+childrenIndex} />;
+                        })
+                    })
+                }
+            </section>
+        );
+    }
 });
-
-

@@ -1,32 +1,17 @@
 <!DOCTYPE html>
 <html lang="en-US">
-    <head>
-        <title>hello REACT :) => Test Tasks</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <title>hello REACT :) => Test Tasks</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <!-- Init css files -->
-        <link rel="stylesheet" type="text/css" href="css/main.css">
+    <!-- Init css files -->
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+<div id="root"></div>
+<!-- Include js files -->
+<script src="bundle.js"></script>
 
-        <script type="text/javascript">
-            var isFirefox = typeof InstallTrigger !== 'undefined';
-            if (!isFirefox) {
-                alert('Please use Firefox. Because some browsers (Chrome, e.g.) will fail to load the file unless it\'s served via HTTP');
-            }
-        </script>
-        <!-- include js files -->
-        <script src="build/react.js"></script>
-        <script src="build/react-dom.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
-        <script src="components/require.js"></script>
-
-
-    </head>
-    <body>
-        <header id="header"></header>
-        <div class="content" id="app"></div>
-        <!-- Include js files -->
-        <script type="text/babel" src="App.js"></script>
-        
-    </body>
+</body>
 </html>

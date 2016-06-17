@@ -1,13 +1,13 @@
-define(['./itemTemplate'], function () {
-    return React.createClass({
-        render(){
-            return (
-                <div className={"item bg-"+this.props.bgClass}>
-                    <div className="context">
-                        Hello test {this.props.iItem}.{this.props.jItem}
-                    </div>
+import React from "react";
+export default
+React.createClass({
+    render: function () {
+        return (
+            <div className={"item bg-"+this.props.bgClass} style={this.props.lineStyle}>
+                <div className="context">
+                    Hello test {this.props.row}.{this.props.column}
                 </div>
-            )
-        }
-    });
+            </div>
+        )
+    }
 });
