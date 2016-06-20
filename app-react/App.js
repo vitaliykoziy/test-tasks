@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import AppContent  from "./components/content";
 import AppHeaderContent  from "./components/headerContent";
+import itemsData from "./utils/itemsData";
 
 var Root = React.createClass({
     getInitialState: function () {
@@ -11,19 +12,19 @@ var Root = React.createClass({
     },
     componentWillMount: function () {
         this.setState({
-            items: AppContent.mountDefaultItems()
+            items: itemsData.mountDefaultItems()
         });
     },
-    handleClick: function (event) {
+    handleClick: function () {
         this.setState({
-            items: AppContent.randomData()
+            items: itemsData.randomDataForItems()
         });
     },
     render: function () {
         return (
             <div>
                 <AppHeaderContent
-                    clickEventFunction={() => {return  this.handleClick();}}
+                    clickEventFunction={() => this.handleClick()}
                 />
                 <AppContent
                     items={this.state.items}
@@ -33,12 +34,7 @@ var Root = React.createClass({
     }
 });
 
-
 ReactDOM.render(
     <Root />,
     document.getElementById('root')
 );
-
-
-
-

@@ -65,18 +65,53 @@
 
 	var _content2 = _interopRequireDefault(_content);
 
-	var _headerContent = __webpack_require__(172);
+	var _headerContent = __webpack_require__(171);
 
 	var _headerContent2 = _interopRequireDefault(_headerContent);
 
+	var _itemsData = __webpack_require__(172);
+
+	var _itemsData2 = _interopRequireDefault(_itemsData);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	_reactDom2.default.render(_react2.default.createElement(
-	    "div",
-	    null,
-	    _react2.default.createElement(_headerContent2.default, null),
-	    _react2.default.createElement(_content2.default, null)
-	), document.getElementById('root'));
+	var Root = _react2.default.createClass({
+	    displayName: "Root",
+
+	    getInitialState: function getInitialState() {
+	        return {
+	            items: []
+	        };
+	    },
+	    componentWillMount: function componentWillMount() {
+	        this.setState({
+	            items: _itemsData2.default.mountDefaultItems()
+	        });
+	    },
+	    handleClick: function handleClick() {
+	        this.setState({
+	            items: _itemsData2.default.randomDataForItems()
+	        });
+	    },
+	    render: function render() {
+	        var _this = this;
+
+	        return _react2.default.createElement(
+	            "div",
+	            null,
+	            _react2.default.createElement(_headerContent2.default, {
+	                clickEventFunction: function clickEventFunction() {
+	                    return _this.handleClick();
+	                }
+	            }),
+	            _react2.default.createElement(_content2.default, {
+	                items: this.state.items
+	            })
+	        );
+	    }
+	});
+
+	_reactDom2.default.render(_react2.default.createElement(Root, null), document.getElementById('root'));
 
 /***/ },
 /* 2 */
@@ -20385,20 +20420,35 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _items = __webpack_require__(170);
+	var _itemTemplate = __webpack_require__(170);
 
-	var _items2 = _interopRequireDefault(_items);
+	var _itemTemplate2 = _interopRequireDefault(_itemTemplate);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = _react2.default.createClass({
 	    displayName: "content",
 
+	    propTypes: {
+	        items: _react2.default.PropTypes.array.isRequired
+	    },
 	    render: function render() {
 	        return _react2.default.createElement(
 	            "div",
 	            { className: "content" },
-	            _react2.default.createElement(_items2.default, null)
+	            _react2.default.createElement(
+	                "section",
+	                { className: "content-width" },
+	                this.props.items.map(function (item, index) {
+	                    return _react2.default.createElement(_itemTemplate2.default, {
+	                        backgroundColor: item.color,
+	                        order: item.order,
+	                        column: item.column,
+	                        row: item.row,
+	                        key: index
+	                    });
+	                })
+	            )
 	        );
 	    }
 	});
@@ -20417,29 +20467,28 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _itemTemplate = __webpack_require__(171);
-
-	var _itemTemplate2 = _interopRequireDefault(_itemTemplate);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = _react2.default.createClass({
-	    displayName: "items",
+	    displayName: "itemTemplate",
 
-	    getDefaultProps: function getDefaultProps() {
-	        return {
-	            lineStyle: ''
-	        };
-	    },
 	    render: function render() {
+	        var lineStyles = {
+	            backgroundColor: this.props.backgroundColor,
+	            order: this.props.order
+	        };
 	        return _react2.default.createElement(
-	            "section",
-	            { className: "content-width" },
-	            [1, 2, 3, 4].map(function (row, parentIndex) {
-	                return [1, 2, 3, 4].map(function (column, childrenIndex) {
-	                    return _react2.default.createElement(_itemTemplate2.default, { bgClass: (row - 1) * 4 + column, column: column, row: row, key: (parentIndex - 1) * 4 + childrenIndex });
-	                });
-	            })
+	            "div",
+	            { className: "item",
+	                style: lineStyles },
+	            _react2.default.createElement(
+	                "div",
+	                { className: "context" },
+	                "Hello test ",
+	                this.props.row,
+	                ".",
+	                this.props.column
+	            )
 	        );
 	    }
 	});
@@ -20461,19 +20510,32 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = _react2.default.createClass({
-	    displayName: "itemTemplate",
+	    displayName: "headerContent",
 
+	    propTypes: {
+	        clickEventFunction: _react2.default.PropTypes.func.isRequired
+	    },
 	    render: function render() {
 	        return _react2.default.createElement(
-	            "div",
-	            { className: "item bg-" + this.props.bgClass, style: this.props.lineStyle },
+	            "header",
+	            null,
 	            _react2.default.createElement(
-	                "div",
-	                { className: "context" },
-	                "Hello test ",
-	                this.props.row,
-	                ".",
-	                this.props.column
+	                "nav",
+	                { className: "content-width" },
+	                _react2.default.createElement("div", { className: "logo-section" }),
+	                _react2.default.createElement(
+	                    "ul",
+	                    null,
+	                    _react2.default.createElement(
+	                        "li",
+	                        null,
+	                        _react2.default.createElement(
+	                            "a",
+	                            { href: "#", onClick: this.props.clickEventFunction, title: "click me" },
+	                            "Random"
+	                        )
+	                    )
+	                )
 	            )
 	        );
 	    }
@@ -20489,37 +20551,142 @@
 	    value: true
 	});
 
-	var _react = __webpack_require__(2);
+	var _integersList = __webpack_require__(173);
 
-	var _react2 = _interopRequireDefault(_react);
+	var _integersList2 = _interopRequireDefault(_integersList);
 
-	var _content = __webpack_require__(169);
+	var _randomColorsList = __webpack_require__(174);
 
-	var _content2 = _interopRequireDefault(_content);
+	var _randomColorsList2 = _interopRequireDefault(_randomColorsList);
+
+	var _arrayPrototypeRandom = __webpack_require__(176);
+
+	var _arrayPrototypeRandom2 = _interopRequireDefault(_arrayPrototypeRandom);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var arrObject = Array;
-
-	arrObject.prototype.random = function random() {
-
-	    "use strict";
-
-	    return this[Math.floor(Math.random() * this.length)];
+	var getItemsData = function getItemsData(object) {
+	    var data = [];
+	    var columnIndex;
+	    var columns = 4;
+	    object.map(function (objectData, index) {
+	        columnIndex = index % columns + 1;
+	        data.push({
+	            column: columnIndex > 0 ? columnIndex : 4,
+	            row: (columns - index % columns) / columns + index / columns,
+	            color: objectData.color,
+	            order: objectData.order
+	        });
+	    });
+	    return data;
 	};
 
-	var getOrders = function getOrders(ordersCount) {
+	var mountDefaultItems = function mountDefaultItems() {
 
-	    var orders = [];
+	    var backgroundColors = ["aliceblue", "aqua", "bisque", "blueviolet", "burlywood", "cadetblue", "chartreuse", "darkgoldenrod", "darkslateblue", "gold", "hotpink", "turquoise", "skyblue", "royalblue", "salmon", "teal"];
+	    var defaultData = [];
 
-	    for (var i = 0; i < ordersCount; i++) {
+	    backgroundColors.map(function (color, index) {
+	        defaultData.push({
+	            color: color,
+	            order: 0
+	        });
+	    });
 
-	        orders[i] = i + 1;
+	    return getItemsData(defaultData);
+	};
+
+	var randomDataForItems = function randomDataForItems() {
+
+	    var itemsLength = 16;
+	    var orders = _integersList2.default.integersList(itemsLength);
+	    var backgroundColors = _randomColorsList2.default.randomColorsList(itemsLength);
+	    var randomOrder, indexForRemoving;
+	    var randomData = [];
+
+	    backgroundColors.map(function (color, index) {
+	        randomOrder = orders.random();
+	        randomData.push({
+	            color: color,
+	            order: randomOrder
+	        });
+	        indexForRemoving = orders.indexOf(randomOrder);
+	        orders.splice(indexForRemoving, 1);
+	    });
+
+	    return getItemsData(randomData);
+	};
+
+	exports.default = {
+	    mountDefaultItems: mountDefaultItems,
+	    randomDataForItems: randomDataForItems
+	};
+
+/***/ },
+/* 173 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	var integersList = function integersList(amount) {
+
+	    var list = [];
+
+	    for (var i = 0; i < amount; i++) {
+
+	        list[i] = i + 1;
 	    }
 
-	    return orders;
+	    return list;
+	};
+	exports.default = {
+	    integersList: integersList
 	};
 
+/***/ },
+/* 174 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _randomColorHash = __webpack_require__(175);
+
+	var _randomColorHash2 = _interopRequireDefault(_randomColorHash);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var randomColorsList = function randomColorsList(amount) {
+
+	    var colorsList = [];
+
+	    for (var i = 0; i < amount; i++) {
+
+	        colorsList[i] = _randomColorHash2.default.generateRandomColor(colorsList);
+	    }
+
+	    return colorsList;
+	};
+
+	exports.default = {
+	    randomColorsList: randomColorsList
+	};
+
+/***/ },
+/* 175 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
 	var generateRandomColor = function generateRandomColor(usedColors) {
 
 	    var usedColorsPrivate = usedColors;
@@ -20546,70 +20713,24 @@
 	    return colorHash;
 	};
 
-	var getBgColors = function getBgColors(colorsCount) {
-
-	    var bgColors = [];
-
-	    for (var i = 0; i < colorsCount; i++) {
-
-	        bgColors[i] = generateRandomColor(bgColors);
-	    }
-
-	    return bgColors;
+	exports.default = {
+	    generateRandomColor: generateRandomColor
 	};
 
-	exports.default = _react2.default.createClass({
-	    displayName: "headerContent",
+/***/ },
+/* 176 */
+/***/ function(module, exports) {
 
-	    handleClick: function handleClick(event) {
-	        var items = document.getElementsByClassName("item");
-	        var orders = getOrders(items.length);
-	        var bgColors = getBgColors(items.length);
+	"use strict";
 
-	        for (var i = 0; i < items.length; i++) {
+	var arrObject = Array;
 
-	            // random orders
-	            var randomOrder = orders.random();
-	            var indexForRemoving = orders.indexOf(randomOrder);
+	arrObject.prototype.random = function random() {
 
-	            orders.splice(indexForRemoving, 1);
+	    "use strict";
 
-	            // random bg colors
-	            var randomBgColor = bgColors.random();
-
-	            indexForRemoving = bgColors.indexOf(randomBgColor);
-	            bgColors.splice(indexForRemoving, 1);
-
-	            // change styles of item
-	            items[i].style.order = randomOrder;
-	            items[i].style.backgroundColor = randomBgColor;
-	        }
-	    },
-	    render: function render() {
-	        return _react2.default.createElement(
-	            "header",
-	            null,
-	            _react2.default.createElement(
-	                "nav",
-	                { className: "content-width" },
-	                _react2.default.createElement("div", { className: "logo-section" }),
-	                _react2.default.createElement(
-	                    "ul",
-	                    null,
-	                    _react2.default.createElement(
-	                        "li",
-	                        null,
-	                        _react2.default.createElement(
-	                            "a",
-	                            { href: "#", onClick: this.handleClick, title: "click me" },
-	                            "Random"
-	                        )
-	                    )
-	                )
-	            )
-	        );
-	    }
-	});
+	    return this[Math.floor(Math.random() * this.length)];
+	};
 
 /***/ }
 /******/ ]);
