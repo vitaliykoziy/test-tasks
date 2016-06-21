@@ -1,14 +1,12 @@
-var integersList = function integersList(amount) {
+const integersList = function integersList(amount) {
+  const list = [];
 
-    var list = [];
-
-    for (var i = 0; i < amount; i++) {
-        list[i] = i + 1;
-    }
-
-    return list;
-
+  for (let i = 0; i < amount; i++) {
+    list[i] = i + 1;
+  }
+  return list;
 };
+
 export default {
-    integersList
+  integersList,
 };

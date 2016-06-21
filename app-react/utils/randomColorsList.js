@@ -1,17 +1,10 @@
-import randomColor from "./randomColorHash";
+import randomColor from './randomColorHash';
 
-var randomColorsList = function randomColorsList(amount) {
+export default (amount) => {
+  const colorsList = [];
 
-    var colorsList = [];
-
-    for (var i = 0; i < amount; i++) {
-        colorsList[i] = randomColor.generateRandomColor(colorsList);
-    }
-
-    return colorsList;
-
-};
-
-export default {
-    randomColorsList
+  for (let i = 0; i < amount; i++) {
+    colorsList[i] = randomColor(colorsList);
+  }
+  return colorsList;
 };

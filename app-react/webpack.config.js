@@ -4,14 +4,13 @@ module.exports = {
         filename: "bundle.js"
     },
     module: {
-        // preLoaders: [
-        //     {
-        //         test: /\.js$/,
-        //         exclude: /node_modules/,
-        //         loader: 'jshint-loader'
-        //
-            //     }
-        // ],
+        preLoaders: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: 'eslint-loader'
+            }
+        ],
         loaders: [
             {
                 test: /\.js$/,
@@ -27,5 +26,8 @@ module.exports = {
     resolve: {
         extensions: ['', '.js']
     },
-    watch: true
-}
+    watch: true,
+    eslint: {
+        configFile: './.eslintrc'
+    }
+};

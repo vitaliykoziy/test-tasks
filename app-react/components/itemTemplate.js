@@ -1,19 +1,24 @@
-import React, {Component} from "react";
+import React, { PropTypes } from 'react';
 
-export default class ItemTemplate extends Component {
-    
-    render() {
-        var lineStyles = {
-            backgroundColor: this.props.backgroundColor,
-            order: this.props.order
-        };
-        return (
-            <div className={"item"}
-                 style={lineStyles}>
-                <div className="context">
-                    Hello test {this.props.row}.{this.props.column}
-                </div>
-            </div>
-        )
-    }
-}
+export const ItemTemplate = ({
+  row,
+  column,
+  color,
+  order,
+}) => (
+  <div
+    className="item"
+    style={{ backgroundColor: color, order }}
+  >
+    <div className="context">
+      Hello test {row}.{column}
+    </div>
+  </div>
+ );
+
+ItemTemplate.propTypes = {
+  row: PropTypes.number.isRequired,
+  column: PropTypes.number.isRequired,
+  color: PropTypes.string.isRequired,
+  order: PropTypes.number.isRequired,
+};
