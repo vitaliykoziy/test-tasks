@@ -1,11 +1,9 @@
-import React from "react";
+import React, {Component} from "react";
 import ItemTemplate  from "./itemTemplate";
 
-export default React.createClass({
-    propTypes: {
-        items: React.PropTypes.array.isRequired
-    },
-    render: function () {
+export default class AppContent extends Component {
+
+    render() {
         return (
             <div className="content">
                 <section className="content-width">
@@ -26,4 +24,8 @@ export default React.createClass({
             </div>
         )
     }
-});
+}
+
+AppContent.propTypes = {
+    items: React.PropTypes.array.isRequired
+};

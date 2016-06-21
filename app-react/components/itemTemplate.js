@@ -1,7 +1,8 @@
-import React from "react";
-export default
-React.createClass({
-    render: function () {
+import React, {Component} from "react";
+
+export default class ItemTemplate extends Component {
+    
+    render() {
         var lineStyles = {
             backgroundColor: this.props.backgroundColor,
             order: this.props.order
@@ -15,4 +16,4 @@ React.createClass({
             </div>
         )
     }
-});
+}

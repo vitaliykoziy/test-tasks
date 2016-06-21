@@ -3,9 +3,11 @@ import backgroundColorsList from "./randomColorsList";
 import arrayPrototypeRandom from "./arrayPrototypeRandom";
 
 var getItemsData = function getItemsData(object) {
+
     var data = [];
     var columnIndex;
     var columns = 4;
+
     object.map(function (objectData, index) {
         columnIndex = index % columns + 1;
         data.push({

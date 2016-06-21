@@ -1,10 +1,8 @@
-import React from "react";
+import React, {Component} from "react";
 
-export default React.createClass({
-    propTypes: {
-        clickEventFunction: React.PropTypes.func.isRequired
-    },
-    render: function () {
+export default class AppHeaderContent extends Component {
+    
+    render() {
         return (
             <header>
                 <nav className="content-width">
@@ -19,4 +17,8 @@ export default React.createClass({
             </header>
         )
     }
-});
+}
+
+AppHeaderContent.propTypes = {
+    clickEventFunction: React.PropTypes.func.isRequired
+};
